@@ -1,0 +1,131 @@
+.Slider1-Outer{
+    padding-top: 30px;
+    background: url("/assets/illustration-vintage-style-paper-background-using-pastel-colours\ 1.png") no-repeat center center;
+    background-size: cover;
+    
+}
+
+.custom-slider-container {
+    
+    
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: end;
+    bottom:20px;
+    align-items: center;
+    gap: 0 !important;
+  }
+  
+  .custom-slider-wrapper {
+    cursor: pointer;
+      margin-top: 40px;
+    
+    display: flex;
+    gap: 16px; 
+    align-items: center;
+    transition: transform 0.5s ease-in-out; 
+  }
+  .img-div{
+    width: 100%;
+    height: 200px;
+  }
+  
+
+
+  .custom-slider-image {
+    background-color: white;
+    color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-slider-image-large {
+    width: 355px;
+    padding: 20px;
+    height:467px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.custom-slider-image-small {
+    padding: 15px;
+    width: 300px;
+    height: 400px;
+}
+
+.img-div {
+    width: 100%;
+    height: 65%; 
+}
+
+.img-div img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+}
+
+.custom-slider-image-content {
+    gap:10px;
+    height:30%; 
+    padding-top:10px;
+    display: flex;
+    flex-direction: column;  
+}
+
+.custom-slider-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+
+.custom-slider-footer {
+    display: flex;
+}
+
+.custom-slider-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.custom-slider-location-icon {
+    font-size: 16px;
+    color: red;
+}
+
+ .custom-slider-action {
+    
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+} 
+
+.custom-slider-action-icon {
+    border: 2px solid black;
+    font-size: 14px;
+    color: black;
+}
+
+.custom-navigation-buttons{
+    width: 110px;
+    height:60px;
+    display: flex;
+    background-color: #89874D;
+}
+

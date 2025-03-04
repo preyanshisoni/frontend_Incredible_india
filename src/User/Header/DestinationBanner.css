@@ -1,0 +1,211 @@
+/* .DestinationBanner{
+    
+    background: url("/assets/4848108\ 1.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.destination-top{
+    margin-top: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+.Des-heading{
+    font-family: Helvetica;
+   
+    
+    line-height: 91.99px;
+    color: #698DD9;
+
+}
+.discoverMore-btn{
+margin-top:30px;
+}
+
+.desOuterDiv{
+    justify-content: center;
+    padding: 0;
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:40px
+  
+}
+.desDiv{
+
+    border-radius:5px;
+    width:310px;
+    height: 279px;
+}
+
+.desImg{
+    border-radius:5px;
+   
+} 
+
+
+.overlayText {
+    
+    position: absolute;
+    text-align: center;
+    bottom:10%;
+    left:30%;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+   */
+
+   /* Overall Banner */
+.DestinationBanner {
+    background: url("/assets/4848108 1.jpg") no-repeat center center;
+    background-size: cover;
+    padding-bottom: 40px;
+  }
+  
+  /* Top Section */
+  /* .destination-top {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  } */
+  .destination-top {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Ensures space between text and button */
+    align-items: center;
+    text-align: left;
+    padding: 0 20px; /* Add padding similar to .desOuterDiv */
+    max-width: 1200px; /* Optional: Set a max width */
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+  
+  .Des-heading {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+    color: #698dd9;
+    margin-bottom: 8px;
+  }
+  
+  /* .discoverMore-btn {
+    margin-top: 30px;
+    text-transform: none;
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .discoverMore-btn:hover {
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+  } */
+  
+  /* Cards Layout */
+  .desOuterDiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+  
+  .desDiv {
+    border-radius: 5px;
+    width: 310px;
+    height: 279px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .desDiv:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  .imgContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .desImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+  }
+  
+  /* Overlay Setup */
+.overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  transition: top 0.5s ease;
+}
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated Text */
+.overlayText {
+  color: #fff;
+  font-weight: bold;
+  margin: 4px 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.overlayButton {
+  margin-top: 10px;
+ 
+  color: #fff;
+  text-transform: none;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+.desDiv:hover .overlay {
+  top: 0;
+}
+
+.desDiv:hover .overlayText,
+.desDiv:hover .overlayButton {
+  opacity: 1;
+  transform: translateY(0);
+  animation: bounceText 0.6s;
+}
+
+/* Keyframes for a subtle bounce effect on text */
+@keyframes bounceText {
+  0% {
+    transform: translateY(50px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
