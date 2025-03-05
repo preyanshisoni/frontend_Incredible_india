@@ -1,12 +1,14 @@
 import { SearchAll } from "@/redux/slice/PlaceSlice";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 
 const Search = ({ isScrolled }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showLine, setShowLine] = useState(false);
+  
+
   const dispatch = useDispatch();
   const router =  useRouter();
   
@@ -37,9 +39,6 @@ const Search = ({ isScrolled }) => {
     }
 }
 }
-
-
-
   return (
     <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
       
@@ -77,23 +76,26 @@ const Search = ({ isScrolled }) => {
 
       
       {searchTerm.length > 0 && searchResults.length > 0 && (
-        <ul
-          style={{
-            position: "absolute",
-            top: "25px",
-            right: "-6px",
-            width: "200px",
-            backgroundColor: "white",
-            color: "black",
-            borderRadius: "5px",
-            boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
-            listStyleType: "none",
-            padding: "5px",
-            maxHeight: "800px",
-            overflowY: "auto",
-            zIndex: 10,
-          }}
+        <ul 
+        style={{
+          position: "absolute",
+          top: "25px",
+          right: "-6px",
+          width: "200px",
+          backgroundColor: "white",
+          color: "black",
+          borderRadius: "5px",
+          boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
+          listStyleType: "none",
+          padding: "5px",
+          maxHeight: "800px",
+          overflowY: "auto",
+          zIndex: 10,
+        }}
+        
         >
+         
+      
           {searchResults.map((place, index) => (
             <li
               key={index}

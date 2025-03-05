@@ -50,6 +50,30 @@ export const Navbar = () => {
     (state) => state.categories
   );
 
+
+  useEffect(() => {
+    const preventScroll = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+  
+    if (isDropdownOpen) {
+      document.body.style.overflow = "hidden"; 
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+    } else {
+      document.body.style.overflow = "auto"; 
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+    }
+  
+    return () => {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isDropdownOpen]);
+  
+  
   
 
   useEffect(() => {}, []);
@@ -225,6 +249,7 @@ export const Navbar = () => {
                     {isDropdownOpen && (
                       <>
                         <Box
+                        
                           sx={{
                             border: "1px solid #d0d0d0",
                             // background: "linear-gradient(to bottom, #ffffff, #f8f9fa)",
@@ -255,6 +280,7 @@ export const Navbar = () => {
                           className="hoverDiv"
                         >
                           <Box
+                        
                             className="locationDataBox"
                             sx={{
                               p: 2,
@@ -425,69 +451,9 @@ export const Navbar = () => {
                   </Stack>
                 </Box>
                 <Box>
-                  {/* <Stack direction="row" gap={5}>
-                    <IoSearchCircleSharp
-                      size={32}
-                      style={{ color: isScrolled ? "black" : "white" }}
-                      onClick={() => setShowLine(!showLine)}
-                    />
-                    {showLine && (
-                    
-                      <input 
-                      type="text" 
+              
 
-                      className="search-input" 
-                      placeholder="Search..." 
-                      // value={searchTerm} 
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      
-                                              style={{
-                          position: "absolute",
 
-                          width: "160px",
-                          top:"12px",
-                          height: "30px",
-                          right:"56px",
-                          backgroundColor: isScrolled ? "black" : "white",
-                          transition: "width 0.3s ease",
-                        }}
-                    />
-                    )}
-                  </Stack> */}
-                  
-                  {/* <Stack direction="row" gap={5} alignItems="center">
-  <IoSearchCircleSharp
-    size={32}
-    style={{ color: isScrolled ? "black" : "white", cursor: "pointer" }}
-    onClick={() => setShowLine(!showLine)}
-  />
-  {showLine && (
-    <input
-      type="text"
-      className="search-input"
-      placeholder="Search..."
-      // onChange={(e) => setSearchTerm(e.target.value)}
-      style={{
-        position: "absolute",
-        
-        top: "12px",
-        right: "56px",
-        width: "160px",
-        height: "20px",
-        backgroundColor: "transparent",
-        border: "none",
-        borderBottom: `2px solid ${isScrolled ? "black" : "white"}`,
-        outline: "none",
-        color: isScrolled ? "black" : "white",
-        transition: "width 0.3s ease",
-        fontSize: "16px",
-        padding: "2px",
-      }}
-    />
-  )}
-</Stack> */}
-
-{/* <Search/> */}
 <Search isScrolled={isScrolled}/>
 
                 </Box>
