@@ -18,9 +18,11 @@ const eslintConfig = [
       ecmaVersion: 2020,  // Supports modern JavaScript features
       sourceType: "module", // To allow import/export syntax
       ecmaFeatures: {
-        jsx: true, // If you're using JSX with React
+        jsx: true,
       },
     },
   },
 ];
 export default eslintConfig;
+
+
