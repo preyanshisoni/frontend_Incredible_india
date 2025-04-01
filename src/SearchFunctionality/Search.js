@@ -3,16 +3,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import "./Search.css";
+import  styles from "./Search.module.css";
 
 const Search = ({ isScrolled }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showLine, setShowLine] = useState(false);
-  
+
 
   const dispatch = useDispatch();
   const router =  useRouter();
-  
+
   const searchResults = useSelector((state) => state.places.searchAll);
 
   const handleSearch = (e) => {
@@ -20,18 +20,18 @@ const Search = ({ isScrolled }) => {
     setSearchTerm(query);
 
     if (query.length > 0) {
-      dispatch(SearchAll({ query }));  
+      dispatch(SearchAll({ query }));
     }
   };
   const handlePlaceClick = (type,id,stateName,parentId,cityName)=>{
     setSearchTerm("");
-    
+
        if(type=="place"){
     router.push(`/placeDetails/${id}`);
   }
   else{
     if(parentId==="null"){
-     
+
         sessionStorage.setItem("setStorageId", id);
         router.push(`/place-to-visit/${cityName}`);
     }else{
@@ -42,21 +42,21 @@ const Search = ({ isScrolled }) => {
 }
   return (
     <div style={{position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
-      
+
       <IoSearchCircleSharp
         size={32}
         style={{marginTop:"-8px", color: isScrolled ? "black" : "white", cursor: "pointer" }}
         onClick={() => setShowLine(!showLine)}
       />
 
-      
+
       {showLine && (
         <input
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className={`search-input ${isScrolled ? "scrolled" : ""}`}
+          className={`styles.searchInput ${isScrolled ? "scrolled" : ""}`}
 
           style={{
             position: "absolute",
@@ -76,9 +76,9 @@ const Search = ({ isScrolled }) => {
         />
       )}
 
-      
+
       {searchTerm.length > 0 && searchResults.length > 0 && (
-        <ul 
+        <ul
         style={{
           position: "absolute",
           top: "25px",
@@ -94,11 +94,11 @@ const Search = ({ isScrolled }) => {
           overflowY: "auto",
           zIndex: 10,
         }}
-        
+
         >
-         
-  
-      
+
+
+
           {searchResults.map((place, index) => (
             <li
               key={index}
@@ -114,12 +114,12 @@ const Search = ({ isScrolled }) => {
                 handlePlaceClick(
                   place.type,
                   place.id,
-                  place.parent_id ? place.parent_id.name : "", 
-                  place.parent_id ? place.parent_id : "null",  
+                  place.parent_id ? place.parent_id.name : "",
+                  place.parent_id ? place.parent_id : "null",
                   place.name
                 );
               }}
-              
+
             >
               {place.name}
             </li>

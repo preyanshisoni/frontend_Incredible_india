@@ -1,4 +1,4 @@
-.slider-wrapper {
+.sliderWrapper {
   background: url("/assets/colorful-abstract-textured-background-design 2.png") no-repeat center center;
   background-size: cover;
   margin-bottom: 30px;
@@ -10,7 +10,7 @@
 }
 
 @keyframes fadeIn {
-  from {   
+  from {
     opacity: 0;
   }
   to {
@@ -18,7 +18,7 @@
   }
 }
 
-.slider-title {
+.sliderTitle {
   font-family: "Helvetica", sans-serif;
   color:#003366;
   font-weight: 700;
@@ -26,14 +26,14 @@
   letter-spacing: 1px;
 }
 
-.slider-subtitle {
+.sliderSubtitle {
   margin-top: 5px;
   font-size: 16px;
   color: #555;
   letter-spacing: 0.5px;
 }
 
-.slider-container {
+.sliderContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,33 +41,33 @@
   position: relative;
 }
 
-.slider-button {
+.sliderButton {
   /* border-radius: 50% !important; */
   width: 30px;
-  
-  height: 50px; 
+
+  height: 50px;
    /* min-width:10px; */
-  /* min-height: 50px; */ 
+  /* min-height: 50px; */
   display: flex;
   align-items: center;
   justify-content: center;
   color:"#fff" !important;
-  
+
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.slider-button:hover {
- 
+.sliderButton:hover {
+
   transform: scale(1.05);
 }
 
-.prev-button {
+.prevButton {
   margin-right: 20px;
 }
 
-.next-button {
+.nextButton {
   margin-left: 20px;
 }
 
@@ -79,7 +79,7 @@
   padding: 20px 0;
 }
 
-.slider-item {
+.sliderItem {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -91,12 +91,12 @@
   opacity: 0.8;
 }
 
-.slider-item:hover {
+.sliderItem:hover {
   transform: scale(0.95);
   opacity: 1;
 }
 
-.slider-item.center-image {
+.sliderItem.center-image {
   width: 300px;
   height: 390px;
   border-radius: 2px;
@@ -105,14 +105,14 @@
   opacity: 1;
 }
 
-.slider-image {
+.sliderImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 
-.slider-caption {
+.sliderCaption {
   position: absolute;
   bottom: 15px;
   left: 0;
@@ -126,6 +126,6 @@
   transition: background 0.3s ease;
 }
 
-.slider-caption:hover {
+.sliderCaption:hover {
   background: rgba(0, 0, 0, 0.8);
 }

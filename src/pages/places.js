@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import Image from "next/image";
-import "../pages/places.css";
+import styles from  "../pages/places.module.css";
 import { debounce } from "lodash";
 import { IoSearchOutline } from "react-icons/io5";
 import { fetchCategories } from "@/redux/slice/categorySlice";
@@ -298,7 +298,7 @@ const Place = () => {
           width: "100%",
           position: "relative",
         }}
-        className="places-top"
+        className={styles.placesTop}
       >
         {/* Background Image with Overlay */}
         <Box sx={{ height: "80vh", position: "relative" }}>
@@ -318,7 +318,7 @@ const Place = () => {
 
         {/* Animated Text */}
         <Box
-          className="animated-text"
+          className={styles.animatedText}
           sx={{
             position: "absolute",
             top: "50%",
@@ -347,7 +347,7 @@ const Place = () => {
         </Box>
 
         <Box
-          className="carousel-container"
+          className={styles.carouselContainer}
           sx={{
             position: "absolute",
             top: "10%",
@@ -362,7 +362,7 @@ const Place = () => {
         >
           <Box
             ref={slideRef}
-            className="carousel-slides"
+            className={styles.carouselSlides}
             sx={{
               display: "flex",
               transition: transitionEnabled
@@ -377,7 +377,7 @@ const Place = () => {
             {slides.map((place, index) => (
               <Box
                 key={index}
-                className="carousel-slide"
+                className={styles.carouselSlide}
                 sx={{ minWidth: "100%", position: "relative" }}
               >
                 <img
@@ -391,7 +391,7 @@ const Place = () => {
                   }}
                 />
                 <Typography
-                  className="caption"
+                  className={styles.caption}
                   sx={{
                     position: "absolute",
                     bottom: "10px",
@@ -412,13 +412,13 @@ const Place = () => {
       </Box>
 
       <Box
-        className="place-main_div"
+        className={styles.placeMainDiv}
         sx={{
           backgroundImage: 'url("/assets/4848108 1.jpg")',
           backgroundSize: "cover",
         }}
       >
-        <Box className="placeLeftBox">
+        <Box className={styles.placeLeftBox}>
           <Box
             sx={{
               display: "flex",
@@ -575,7 +575,7 @@ const Place = () => {
         {/*  right side  */}
         <Box
           sx={{ width: "72%", backgroundColor: "white" }}
-          className="placeRightBox"
+          className={styles.placeRightBox}
         >
           <Box
             sx={{
@@ -616,7 +616,7 @@ const Place = () => {
             </Box>
           </Box>
 
-          <Box className="rightSideDownDiv" sx={{ mt: 2 }}>
+          <Box className={styles.rightSideDownDiv} sx={{ mt: 2 }}>
             {filteredPlaces.length > 0 ? (
               <Grid container spacing={4}>
                 {filteredPlaces.map((place) => (

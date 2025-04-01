@@ -18,12 +18,11 @@ export const getLocationById = createAsyncThunk(
         const response = await axios.get(`${BASE_URL}/locations/${id}`);
         return response.data;
       } catch (err) {
-        console.error("Error fetching place details", err);
         return rejectWithValue(err.message);
       }
     }
   );
- export const getChildLocationsByParentId = createAsyncThunk("locations/getChildLocationById", 
+ export const getChildLocationsByParentId = createAsyncThunk("locations/getChildLocationById",
   async (id, { rejectWithValue }) => {
 try {
   const response = await axios.get(`${BASE_URL}/locations/getchild/${id}`);
@@ -45,15 +44,15 @@ const locationSlice = createSlice({
         locations:[],
         getLocationDetailsById:[],
         getChildLocationsById :[],
-        
+
         loading:false,
         error:null,
     },
-    
+
     extraReducers: (builder) => {
         builder
         .addCase(fetchLocation.pending, (state) => {
-            state.loading = true; 
+            state.loading = true;
             state.error = null;
       })
       .addCase(fetchLocation.fulfilled, (state, action) => {
@@ -62,7 +61,7 @@ const locationSlice = createSlice({
         })
         .addCase(fetchLocation.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.error.message;  
+            state.error = action.error.message;
         })
         .addCase(getLocationById.pending, (state) => {
                   state.loading = true;
@@ -75,7 +74,7 @@ const locationSlice = createSlice({
         .addCase(getLocationById.rejected, (state, action) => {
                   state.loading = false;
                   state.error = action.payload;
-                  
+
         })
         .addCase(getChildLocationsByParentId.pending, (state) => {
                   state.loading = true;

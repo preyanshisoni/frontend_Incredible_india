@@ -43,7 +43,7 @@ const statePage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { getChildLocationsById } = useSelector((state) => state.locations);
-  console.log("getChildLocationsById", getChildLocationsById);
+
 
   useEffect(() => {
     const storedId = sessionStorage.getItem("setStorageId");
@@ -88,7 +88,6 @@ const statePage = () => {
   };
 
   const handleCityClick = (id, stateName) => {
-    console.log("id, cityName, stateName", id, stateName);
     sessionStorage.setItem("setStorageId", id);
     router.push(`/place-to-visit/${stateName}`);
   };
@@ -103,10 +102,10 @@ const statePage = () => {
   };
 
   const seoTitle = cityName && stateName ? `${cityName}, ${stateName} - Best Places to Visit` : 'Explore Incredible Places in India';
-  const seoDescription = cityName && stateName 
-    ? `Discover top tourist attractions, historical sites, and must-visit places in ${cityName}, ${stateName}. Plan your trip today!` 
+  const seoDescription = cityName && stateName
+    ? `Discover top tourist attractions, historical sites, and must-visit places in ${cityName}, ${stateName}. Plan your trip today!`
     : 'Explore the best places to visit in India!';
-  
+
   const seoUrl = `${BASE_URL}/place-to-visit/${stateName}/${cityName}`;
   const seoImage = getChildLocationsById?.data?.[0]?.image || 'https://www.yourwebsite.com/default-image.jpg';
 
@@ -137,7 +136,7 @@ const statePage = () => {
           cardType: 'summary_large_image',
         }}
       />
-      
+
       <Box sx={{ position: "relative", mt: 0, p: 0 }}>
         <Image
           width={1365}
@@ -153,7 +152,7 @@ const statePage = () => {
             bottom: "1%",
             left: "1%",
             transform: "translateY(-50%)",
-           
+
             // background: "linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",
 
             background:"linear-gradient(to right, rgba(0, 0,0,0.8),rgba(0,0,0,0))",

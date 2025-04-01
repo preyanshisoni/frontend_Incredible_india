@@ -1,0 +1,8 @@
+.searchInput::placeholder {
+    color:white;
+    opacity: 0.7;
+  }
+
+  .scrolled::placeholder {
+    color: black;
+  }

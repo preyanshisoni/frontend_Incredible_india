@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import '../styles/globals.css';
+import  '../styles/globals.css';
 
 import store from '@/redux/store';
 import { ThemeProvider, createTheme } from '@mui/material/styles';

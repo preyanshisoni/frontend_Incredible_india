@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../User/nav.css";
+import styles from "../User/nav.module.css";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { IoReorderThreeSharp } from "react-icons/io5";
@@ -35,13 +35,12 @@ export const Navbar = () => {
   const [dropdownType, setDropdownType] = useState("");
   const [showLine, setShowLine] = useState(false);
   const [searchTerm,setSearchTerm] = useState("");
-  
+
   const { places, loading: placesLoading } = useSelector(
     (state) => state.places
   );
   const {searchAll } = useSelector((state)=>state.places.searchAll);
-  
-  console.log("searchall", searchAll);
+
 
   const { locations, loading: locationsLoading } = useSelector(
     (state) => state.locations
@@ -56,25 +55,25 @@ export const Navbar = () => {
       e.preventDefault();
       e.stopPropagation();
     };
-  
+
     if (isDropdownOpen) {
-      document.body.style.overflow = "hidden"; 
+      document.body.style.overflow = "hidden";
       window.addEventListener("wheel", preventScroll, { passive: false });
       window.addEventListener("touchmove", preventScroll, { passive: false });
     } else {
-      document.body.style.overflow = "auto"; 
+      document.body.style.overflow = "auto";
       window.removeEventListener("wheel", preventScroll);
       window.removeEventListener("touchmove", preventScroll);
     }
-  
+
     return () => {
       window.removeEventListener("wheel", preventScroll);
       window.removeEventListener("touchmove", preventScroll);
     };
   }, [isDropdownOpen]);
-  
-  
-  
+
+
+
 
   useEffect(() => {}, []);
   const handleDrawerToggle = () => {
@@ -121,32 +120,30 @@ export const Navbar = () => {
   }, []);
 
   const handleCityClick = (id, stateName, cityName) => {
-    console.log("id,cityName,stateName", id, cityName, stateName);
     sessionStorage.setItem("setStorageId", id);
     router.push(`/place-to-visit/${stateName}/${cityName}`);
     setIsDropdownOpen(false);
   };
 
   const handleStateClick = (id, stateName) => {
-    console.log("id,stateName", id, stateName);
     sessionStorage.setItem("setStorageId", id);
     router.push(`/place-to-visit/${stateName}`);
     setIsDropdownOpen(false);
-    
+
 
   };
   const handleCategoryClick = (id, categoryName) => {
     sessionStorage.setItem("setCategoryId", id);
     router.push(`/must-visit/${categoryName}`);
     setIsDropdownOpen(false);
-  
+
   };
 
 
 
 
 
-  
+
   return (
     <AppBar
       sx={{
@@ -209,7 +206,7 @@ export const Navbar = () => {
               </>
             ) : (
               <Stack direction="row" gap={40}>
-                <Box className="navCenter">
+                <Box className={styles.navCenter}>
                   <Stack direction="row" gap={8} sx={{ fontSize: "1.3rem" }}>
                     <Link
                       onMouseEnter={() => handleMouseEnter("locations")}
@@ -218,7 +215,7 @@ export const Navbar = () => {
                         color: isScrolled ? "black" : "white",
                         textDecoration: "none",
                       }}
-                      className="nav-link"
+                      className={styles.navLink}
                     >
                       Locations
                       <MdKeyboardArrowDown size={25} />
@@ -231,7 +228,7 @@ export const Navbar = () => {
                         color: isScrolled ? "black" : "white",
                         textDecoration: "none",
                       }}
-                      className="nav-link"
+                      className={styles.navLink}
                     >
                       Categories
                       <MdKeyboardArrowDown size={25} />
@@ -244,7 +241,7 @@ export const Navbar = () => {
                         color: isScrolled ? "black" : "white",
                         textDecoration: "none",
                       }}
-                      className="nav-link"
+                      className={styles.navLink}
                     >
                       Places
                       {/* <MdKeyboardArrowDown size={25} /> */}
@@ -255,10 +252,10 @@ export const Navbar = () => {
                     {isDropdownOpen && (
                       <>
                         <Box
-                        
+
                           sx={{
                             border: "1px solid #d0d0d0",
-                            
+
                             position: "absolute",
                             top: "4vh",
                             left: "50%",
@@ -278,17 +275,17 @@ export const Navbar = () => {
                             },
 
                             "&:hover": {
-                            
+
                               boxShadow: "0 12px 24px rgba(0, 0, 0, 0.2)",
                             },
                           }}
                           onMouseEnter={() => setIsDropdownOpen(true)}
                           onMouseLeave={handleMouseLeave}
-                          className="hoverDiv"
+                          className={styles.hoverDiv}
                         >
                           <Box
-                        
-                            className="locationDataBox"
+
+                            className={styles.locationDataBox}
                             sx={{
                               p: 2,
                               display: "grid",
@@ -459,7 +456,7 @@ export const Navbar = () => {
                   </Stack>
                 </Box>
                 <Box>
-              
+
 
 
 <Search isScrolled={isScrolled}/>

@@ -1,11 +1,12 @@
-  
+
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import "../TopSpiritualCarousel/TopSpiritualCarousel.css";
+// import styles from "../TopSpiritualCarousel/TopSpiritualCarousel.module.css";
+import styles from "./TopSpiritualCarousel.module.css";
 import { useRouter } from "next/router";
 
 export const TopSpiritualCarousel = () => {
@@ -36,7 +37,7 @@ export const TopSpiritualCarousel = () => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % filteredPLaces.length);
     }, 3000);
   };
-  
+
   useEffect(() => {
     startAutoSlide(); // Start auto-slide
     return () => clearInterval(intervalRef.current); // Cleanup on unmount
@@ -45,12 +46,12 @@ export const TopSpiritualCarousel = () => {
   const resetAutoSlide = () => {
     clearInterval(intervalRef.current); // Stop the auto-slide
     clearTimeout(timeoutRef.current); // Clear any existing timeout
-  
+
     timeoutRef.current = setTimeout(() => {
       startAutoSlide(); // Restart auto-slide after 3 seconds
     }, 3000);
   };
-    
+
 
   const visiblePlaces = getVisiblePlaces(activeIndex, filteredPLaces);
 
@@ -74,10 +75,10 @@ export const TopSpiritualCarousel = () => {
   }
 
   return (
-    <Box className="Slider1-Outer">
+    <Box className={styles.sliderOuter}>
       <Box sx={{marginLeft:"11%", display:"inline-block"}}>
         <Stack gap={1}>
-          
+
           <Typography variant="h4" sx={{color: "#003366", fontWeight: "700" }}>
             TOP SPIRITUAL PLACES
           </Typography>
@@ -92,30 +93,31 @@ export const TopSpiritualCarousel = () => {
         </Stack>
       </Box>
       {/* -------------------------------------------------------------------------------------- */}
-      <div className="custom-slider-container">
-        <div className="custom-slider-wrapper">
+      <div className={styles.customSliderContainer}>
+        <div className={styles.customSliderWrapper}>
           {visiblePlaces.map((image, index) => (
             <div onClick={()=>{handleClick(image._id)}}
               key={image.id}
-              className={`custom-slider-image ${
-                index === 2 ? "custom-slider-image-large" : "custom-slider-image-small"
+              className={`${styles.customSliderImage} ${
+                index === 2 ? styles.customSliderImageLarge : styles.customSliderImageSmall
               }`}
+
             >
-              <div className="img-div">
+              <div className={styles.imgDiv}>
                 <img src={image.image_id.pictures[0]} alt={image.name} />
               </div>
-              <div className="custom-slider-image-content">
-                <Typography sx={{ fontWeight: "700" }} className="custom-slider-title">
+              <div className={styles.customSliderImageContent}>
+                <Typography sx={{ fontWeight: "700" }} className={styles.customSliderTitle}>
                   {image.name}
                 </Typography>
-                <Typography sx={{ fontSize: "0.8rem", marginBottom: "2px" }} className="custom-slider-description">
+                <Typography sx={{ fontSize: "0.8rem", marginBottom: "2px" }} className={styles.customSliderDescription}>
                   {image.description.length > 100
                     ? `${image.description.slice(0, 140)}...`
                     : image.description}
                 </Typography>
-                <div className="custom-slider-footer">
-                  <LocationOnIcon className="custom-slider-location-icon" />
-                  <div className="custom-slider-location">
+                <div className={styles.customSliderFooter}>
+                  <LocationOnIcon className={styles.customSliderLocationIcon} />
+                  <div className={styles.customSliderLocation}>
                     <Typography variant="body2" fontWeight="700" fontSize="0.9rem">
                       {image.location_id.name}
                     </Typography>
@@ -126,7 +128,7 @@ export const TopSpiritualCarousel = () => {
           ))}
         </div>
         {/* -------------------------------------------------------------------------------------------- */}
-        <div className="custom-navigation-buttons">
+        <div className={styles.customNavigationButtons}>
           <IconButton onClick={handlePrev} sx={{color:"white"}}>
             <ArrowBackIosNewIcon sx={{padding: "3px", fontSize: "35px", border: "2px solid white", borderRadius: "20px" }} />
           </IconButton>

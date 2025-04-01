@@ -3,8 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-
-import "./Slider.css";
+import styles from "./Slider.module.css";
 
 export const Slider = () => {
   const { places } = useSelector((state) => state.places);
@@ -73,42 +72,42 @@ export const Slider = () => {
 
   return (
     <>
-      <Box className="slider-wrapper">
+      <Box className={styles.sliderWrapper}>
         <Typography
           variant="h4"
-          className="slider-title"
+          className={styles.sliderTitle}
           sx={{ fontFamily: "Helvetica", fontWeight: "700", mt: 2 }}
         >
           ATTRACTIONS
         </Typography>
-        <Typography variant="body1" className="slider-subtitle">
+        <Typography variant="body1" className={styles.sliderSubtitle}>
           worth a thousand stories
         </Typography>
 
-        <Box className="slider-container">
+        <Box className={styles.sliderContainer}>
           <Button sx={{fontSize:"20px", backgroundColor:"#003366", color:"white"}}
             onClick={handlePrev}
-            className="slider-button prev-button"
+            className={`${styles.sliderButton} ${styles.prevButton}`}
             aria-label="Previous Slide"
 
           >
             <FaArrowLeft />
           </Button>
 
-          <Box className="slider">
+          <Box className={styles.slider}>
             {visibleSlides(currentIndex).map((image, index) => (
               <Box
                 onClick={() => handleplaceNavigate(image._id)}
                 key={index}
-                className={`slider-item ${index === 1 ? "center-image" : ""}`}
+                className={`styles.sliderItem ${index === 1 ? "styles.centerImage" : ""}`}
               >
                 <img
                   src={image?.image_id.pictures[0]}
                   alt={image?.name}
-                  className="slider-image"
+                  className={styles.sliderImage}
                 />
                 {index === 1 && (
-                  <Typography variant="body1" className="slider-caption">
+                  <Typography variant="body1" className={styles.sliderCaption}>
                     {image?.name}
                   </Typography>
                 )}
@@ -118,7 +117,7 @@ export const Slider = () => {
 
           <Button sx={{fontSize:"20px", backgroundColor:"#003366", color:"white"}}
             onClick={handleNext}
-            className="slider-button next-button"
+            className={`${styles.sliderButton} ${styles.nextButton}`}
             aria-label="Next Slide"
           >
             <FaArrowRight/>

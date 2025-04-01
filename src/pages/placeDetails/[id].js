@@ -32,19 +32,19 @@ const PlaceCarousel = () => {
   const { id } = router.query;
   const { placeDetailsById, loading, error } = useSelector((state) => state.places);
   const {nearByPlaces} = useSelector((state)=>state.places);
-  console.log(nearByPlaces, "nearByPlaces");
+
   const {transport} = useSelector((state)=>state.transport);
-  console.log(transport, "transport");
-  
-  
-  
+
+
+
+
   const transportIconMap = {
     "Railway Station": TrainIcon,
     "Airport": FlightIcon,
     "Bus stand": DirectionsBusFilledIcon,
   };
-  
-  
+
+
 useEffect(() => {
     if (id) {
       dispatch(getPlaceById(id));
@@ -60,7 +60,7 @@ useEffect(() => {
 
   const settings = {
     dots: false,
-    infinite: placeDetailsById?.image_id?.pictures?.length > 1, 
+    infinite: placeDetailsById?.image_id?.pictures?.length > 1,
     speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -80,12 +80,12 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
-  const seoTitle = placeDetailsById?.name 
-  ? `${placeDetailsById?.name} - Best Places to Visit` 
+  const seoTitle = placeDetailsById?.name
+  ? `${placeDetailsById?.name} - Best Places to Visit`
   : 'Explore Incredible Places in India';
 
-const seoDescription = placeDetailsById?.description 
-  ? `Explore ${placeDetailsById?.name}, a must-visit place in India. Find top tourist attractions, historical sites, and hidden gems.` 
+const seoDescription = placeDetailsById?.description
+  ? `Explore ${placeDetailsById?.name}, a must-visit place in India. Find top tourist attractions, historical sites, and hidden gems.`
   : 'Discover top tourist destinations in India with our guide to the best places to visit.';
 
 const seoUrl = `https://www.yourwebsite.com/place-to-visit/${placeDetailsById?.state_name}/${placeDetailsById?.city_name}/${placeDetailsById?.name}`;
@@ -97,7 +97,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
 // }
 
   return<>
-   
+
       <NextSeo
         title={seoTitle}
         description={seoDescription}
@@ -118,18 +118,18 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
           site_name: 'Incredible India',
         }}
         twitter={{
-          handle: '@IncredibleIndia', 
+          handle: '@IncredibleIndia',
           site: '@IncredibleIndia',
           cardType: 'summary_large_image',
         }}
       />
-<Box sx={{position: "relative", marginTop: "0", overflow: "hidden", width: "100%", 
+<Box sx={{position: "relative", marginTop: "0", overflow: "hidden", width: "100%",
       height: "450px"}}>
   <Container
     maxWidth="xl"
     sx={{
       width: "100%",
-      height: "100%", 
+      height: "100%",
       padding: "0",
       margin: "0",
       position: "relative",
@@ -144,7 +144,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
           <Box
             key={index}
             sx={{
-              
+
               width:"100%",
               height:"450px",
               position: "relative",
@@ -189,8 +189,8 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
         ))}
       </Slider>
 
-      
-      
+
+
       <IconButton
         onClick={() => sliderRef.current.slickPrev()}
         sx={{
@@ -203,7 +203,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
           color: "black",
           fontSize: "20px",
           "&:hover": { bgcolor: "white" },
-         
+
         }}
       >
         <ArrowBackIos />
@@ -275,31 +275,31 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
 
         <Image
                     width={600}
-                    height={350} 
+                    height={350}
                   src={placeDetailsById?.image_id?.pictures[0]}
                   alt={placeDetailsById.name}
         />
         </Box>
 <Box sx={{ width: 600, borderRadius: 2, overflow: "hidden", boxShadow: 3, bgcolor: "white" }}>
-      
+
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2, bgcolor: "#f5f5f5" }}>
         <Typography sx={{ color: "red", fontWeight: 600 }}>Today</Typography>
         <Typography sx={{ fontSize: "14px", color: "gray" }}>| Monthly</Typography>
         <Typography sx={{ fontWeight: "bold" }}>25.4 °C</Typography>
       </Box>
 
-      
+
       <Box>
         <Image src="/assets/map.png" width={600} height={350} alt="Map" />
       </Box>
 
-{transport?.data && transport.data.length > 0 ? ( 
+{transport?.data && transport.data.length > 0 ? (
   transport.data.map((transport, index) => {
-    const TransportIcon = transportIconMap[transport.transport_type] || FlightIcon; 
+    const TransportIcon = transportIconMap[transport.transport_type] || FlightIcon;
 
     return (
       <Box key={index} sx={{ p: 0.6, bgcolor: "#f9f9f9" }}>
-        
+
         <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
           <TransportIcon sx={{ backgroundColor: "red", color: "white", p: 1, borderRadius: "50%" }} />
           <Typography sx={{ fontWeight: "bold", color: "red", ml: 1 }}>
@@ -311,7 +311,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
     {transport.transport_name}
   </Typography>
 
-  
+
   <Box display="flex" alignItems="center" sx={{ ml: 5.5, mt: 1 }}>
     <LocationOnIcon sx={{ fontSize: 18, color: "gray", mr: 1 }} />
     <Typography>{transport.distance_km}</Typography>
@@ -322,7 +322,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
 
     );
   })
-) : ( 
+) : (
   <Typography sx={{ fontStyle: "italic", color: "gray", textAlign: "center" }}>
     No transport available in this place
   </Typography>
@@ -338,7 +338,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
       <Typography sx={{p:3}} variant="h4" fontWeight="bold" color="primary" gutterBottom>
         ATTRACTIONS NEARBY
       </Typography>
-    
+
 <Grid
   container
   spacing={3}
@@ -352,23 +352,23 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
       sx={{ display: "flex", justifyContent: "center" }}
     >
       {/* <Card  onClick={()=>handleAttractionNearBy(attraction._id)} */}
-      <Card  
+      <Card
         sx={{
           boxShadow: 3,
           mb: 7,
-          
+
           height: "350px",
           width: "100%",
           maxWidth: "340px",
           position: "relative",
-          overflow: "hidden", 
-          "&:hover .overlay": { opacity: 1 }, 
-          "&:hover .next-text": { bottom: "80%", opacity: 1 }, 
+          overflow: "hidden",
+          "&:hover .overlay": { opacity: 1 },
+          "&:hover .next-text": { bottom: "80%", opacity: 1 },
         }}
       >
-        
+
         <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
-          
+
           <CardMedia
             component="img"
             sx={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -376,17 +376,17 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
             alt={attraction.place_id.name}
           />
 
-          
+
           <Box
             className="overlay"
             sx={{
               position: "absolute",
-              
+
               top: 0,
               left: 0,
               width: "100%",
               height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.5)", 
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -399,7 +399,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
           >
             <Box
   sx={{
-  
+
     color:"black",
     backgroundColor: "#f5f5f5",
     padding: "8px 12px",
@@ -407,7 +407,7 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease-in-out",
     "&:hover": {
-      
+
     },
   }}
 >

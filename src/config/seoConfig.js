@@ -3,7 +3,7 @@ const baseUrl =
     ? 'https://www.yourwebsite.com'
     : 'http://localhost:3001';
 
-console.log('Current Environment:', process.env.NODE_ENV);
+// console.log('Current Environment:', process.env.NODE_ENV);
 
 const defaultSEOConfig = {
   title: 'Incredible India - Explore Beautiful Destinations',

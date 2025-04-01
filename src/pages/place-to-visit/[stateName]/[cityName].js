@@ -21,16 +21,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "@/redux/slice/categorySlice";
 import { fetchLocation, getLocationById } from "@/redux/slice/locationSlice";
 import { Router, useRouter } from "next/router";
-import { getNearByPlaces, getPlaceById, placelistByCityId} from "@/redux/slice/PlaceSlice"; 
+import { getNearByPlaces, getPlaceById, placelistByCityId} from "@/redux/slice/PlaceSlice";
 
 
 import { fetchtransport } from "@/redux/slice/transportSlice";
 import "@fontsource/inter";
 import FlightIcon from "@mui/icons-material/Flight";
-import TrainIcon from "@mui/icons-material/Train"; 
+import TrainIcon from "@mui/icons-material/Train";
 import DirectionsBusFilledIcon from "@mui/icons-material/DirectionsBusFilled";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import RouteIcon from "@mui/icons-material/Route"; 
+import RouteIcon from "@mui/icons-material/Route";
 
 import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -40,20 +40,20 @@ import DescriptionRenderer from "@/ckEditorConfiguration/DescriptionRenderer";
 
 
 const cityPage = () => {
-  
+
   const dispatch = useDispatch();
   const router = useRouter();
-  
+
   const [id, setCityId] = useState(null);
   const [checkStoredId, setcheckStoredId] = useState(false);
   const { getLocationDetailsById, loading, error } = useSelector(
     (state) => state.locations
   );
-  const { cityName, stateName } = router.query; // 
+  const { cityName, stateName } = router.query; //
   const {locationTransport} = useSelector((state)=>state.locationTransport)
   const {placeListByCityId} = useSelector((state) => state.places);
-  console.log("placeListByCityId",placeListByCityId);
-  
+
+
   const theme = useTheme();
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -64,42 +64,42 @@ const cityPage = () => {
     "Bus stand": DirectionsBusFilledIcon,
   };
 
-  
-  
-  
+
+
+
   useEffect(() => {
     const storedId = sessionStorage.getItem("setStorageId");
     setCityId(storedId);
     setcheckStoredId(true);
   }, [router.asPath]);
-  
-  
-  
+
+
+
   useEffect(() => {
     if (id) {
       dispatch(getLocationById(id));
       dispatch(placelistByCityId(id));
       dispatch(fetchLocationTransport(id));
-      
+
     }
   }, [id]);
-  
+
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchLocation());
   }, [dispatch]);
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  
+
+
   const { locations, loading: locationsLoading } = useSelector(
     (state) => state.locations
   );
-  
+
   const filteredstate = locations?.filter(
     (location) => location.parent_id !== null
   );
-  
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       (prevIndex - 1 + placeListByCityId.data.length) % placeListByCityId.data.length
@@ -111,7 +111,6 @@ const handleNext = () => {
 };
 
 const handleCityClick = (id, stateName, cityName) => {
-  console.log("id, cityName, stateName", id, cityName, stateName);
   sessionStorage.setItem("setStorageId", id);
   router.push(`/place-to-visit/${stateName}/${cityName}`);
 };
@@ -163,36 +162,36 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
         }}
       />
     <Box sx={{ position: "relative", mt: 0, p: 0,}}>
-        
+
         <Image
           width={1366}
           height={450}
           src={getLocationDetailsById.picture}
           alt={getLocationDetailsById.name}
-          style={{ objectFit: "fill"}} 
+          style={{ objectFit: "fill"}}
           />
 
-        
+
         <Box
           sx={{
             position: "absolute",
             bottom: "1%",
             left: "1%",
             transform: "translateY(-50%)",
-            
+
             background: "linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",
             padding: "5px 10px",
             borderRadius: "8px",
-            display: "inline-block", 
-            
+            display: "inline-block",
+
           }}
           >
           <Typography
             sx={{
               fontSize: "50px",
               fontWeight: "bold",
-              color: "#fff", 
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)", 
+              color: "#fff",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
             }}
             >
             {getLocationDetailsById.name}
@@ -304,7 +303,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
           textAlign: "center",
           marginTop: -20,
           padding: 10,
-          
+
           backgroundImage: 'url("/assets/colorful-abstract-textured-background-design 2.png")',
 
         }}
@@ -321,7 +320,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
 
         <Box
   sx={{
-    
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -354,9 +353,9 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
 
   <Box
   sx={{
-    
+
     display: "flex",
-    alignItems: "center",  
+    alignItems: "center",
     justifyContent: "center",
     gap: "30px",
     overflow: "hidden",
@@ -373,7 +372,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
           height: index === 1 ? "420px" : "300px",
           zIndex: index === 1 ? 2 : 1,
           transform: index === 1 ? "scale(1.1)" : "scale(0.9)",
-          
+
           marginTop: index === 1 ? "-40px" : "0px",
         }}
       >
@@ -382,7 +381,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
           alt={image?.name}
           style={{
             width: "100%",
-            
+
             height: "100%",
             objectFit: "cover",
           }}
@@ -392,7 +391,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
             variant="body1"
             sx={{
               position: "absolute",
-              
+
               bottom: "15px",
               left: 0,
               width: "80%",
@@ -494,7 +493,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
             },
           }}
         >
-           
+
         </Typography>
 
         <Button
@@ -535,7 +534,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
     Explore Other Cities
   </Typography>
 
-  <Box 
+  <Box
     sx={{
       display: "flex",
       flexWrap: "wrap",
@@ -548,15 +547,15 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
       .slice(0, 4)
       .map((state, index) => (
         <Card
-          onClick={()=>handleCityClick(state._id,state.parent_id.name,state.name)}   
+          onClick={()=>handleCityClick(state._id,state.parent_id.name,state.name)}
           key={index}
           sx={{
             position: "relative",
-            width: 300,          
-            height: 400,         
+            width: 300,
+            height: 400,
             borderRadius: 2,
             boxShadow: 3,
-            overflow: "hidden", 
+            overflow: "hidden",
             textAlign: "left",
             transition: "transform 0.3s",
             "&:hover": {
@@ -569,7 +568,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
             sx={{
               width: "100%",
               height: "100%",
-              objectFit: "cover", 
+              objectFit: "cover",
             }}
             image={state.picture}
             alt={state.name}
@@ -580,7 +579,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
               bottom: 0,
               left: 0,
               width: "100%",
-              bgcolor: "rgba(0, 0, 0, 0.5)", 
+              bgcolor: "rgba(0, 0, 0, 0.5)",
               color: "#fff",
               p: 2,
             }}
