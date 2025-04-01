@@ -187,9 +187,13 @@ export const CarouselContainer = () => {
           left: 20,
           top: "50%",
           transform: "translateY(-50%)",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+         
+          backgroundColor:"#003366",
           color: "white",
-          "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          
+          "&:hover": { backgroundColor: "#0055A4" },
+
+
           zIndex: 10,
         }}
       >
@@ -202,9 +206,11 @@ export const CarouselContainer = () => {
           right: 20,
           top: "50%",
           transform: "translateY(-50%)",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+       
+          backgroundColor:"#003366",
           color: "white",
-          "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          
+          "&:hover": { backgroundColor: "#0055A4" },
           zIndex: 10,
         }}
       >

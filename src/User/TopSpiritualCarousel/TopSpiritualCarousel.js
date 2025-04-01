@@ -1,5 +1,5 @@
   
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -12,6 +12,9 @@ export const TopSpiritualCarousel = () => {
   const { places } = useSelector((state) => state.places);
   const [activeIndex, setActiveIndex] = useState(0);
   const router = useRouter();
+
+  const intervalRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   const filteredPLaces = places.filter(filtered => filtered.category_id.name === "Spiritual");
 
@@ -28,17 +31,33 @@ export const TopSpiritualCarousel = () => {
     }
   };
 
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % filteredPLaces.length);
+    }, 3000);
+  };
+  
+  useEffect(() => {
+    startAutoSlide(); // Start auto-slide
+    return () => clearInterval(intervalRef.current); // Cleanup on unmount
+  }, [filteredPLaces.length]);
+
+  const resetAutoSlide = () => {
+    clearInterval(intervalRef.current); // Stop the auto-slide
+    clearTimeout(timeoutRef.current); // Clear any existing timeout
+  
+    timeoutRef.current = setTimeout(() => {
+      startAutoSlide(); // Restart auto-slide after 3 seconds
+    }, 3000);
+  };
+    
+
   const visiblePlaces = getVisiblePlaces(activeIndex, filteredPLaces);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex(prevIndex => (prevIndex + 1) % filteredPLaces.length);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, [filteredPLaces.length]);
 
 
   const handleNext = () => {
+    resetAutoSlide();
     setActiveIndex((prevIndex) => (prevIndex + 1) % filteredPLaces.length);
   };
 
@@ -59,14 +78,14 @@ export const TopSpiritualCarousel = () => {
       <Box sx={{marginLeft:"11%", display:"inline-block"}}>
         <Stack gap={1}>
           
-          <Typography variant="h4" sx={{color: "#89874D", fontWeight: "700" }}>
+          <Typography variant="h4" sx={{color: "#003366", fontWeight: "700" }}>
             TOP SPIRITUAL PLACES
           </Typography>
-          <Typography variant="body1" sx={{ color: "#89874D" }}>
+          <Typography variant="body1">
             Discover the essence of India.
           </Typography>
           <Box>
-            <Button onClick={handleDiscoverMore} sx={{ color: "black" }} color="inherit" variant="contained">
+            <Button onClick={handleDiscoverMore} sx={{ color: "white"}} color="error" variant="contained">
               Discover More
             </Button>
           </Box>
@@ -108,11 +127,11 @@ export const TopSpiritualCarousel = () => {
         </div>
         {/* -------------------------------------------------------------------------------------------- */}
         <div className="custom-navigation-buttons">
-          <IconButton onClick={handlePrev}>
-            <ArrowBackIosNewIcon sx={{ padding: "3px", fontSize: "20px", border: "2px solid black", borderRadius: "20px" }} />
+          <IconButton onClick={handlePrev} sx={{color:"white"}}>
+            <ArrowBackIosNewIcon sx={{padding: "3px", fontSize: "35px", border: "2px solid white", borderRadius: "20px" }} />
           </IconButton>
-          <IconButton onClick={handleNext}>
-            <ArrowForwardIosIcon sx={{ padding: "3px", fontSize: "20px", border: "2px solid black", borderRadius: "20px" }} />
+          <IconButton onClick={handleNext} sx={{color:"white"}}>
+            <ArrowForwardIosIcon sx={{ padding: "3px", fontSize: "35px", border: "2px solid white", borderRadius: "20px" }} />
           </IconButton>
         </div>
       </div>

@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchCategories } from "@/redux/slice/categorySlice";
 import { fetchLocation, getLocationById } from "@/redux/slice/locationSlice";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { getNearByPlaces, getPlaceById, placelistByCityId} from "@/redux/slice/PlaceSlice"; 
 
 
@@ -125,6 +125,10 @@ const visibleSlides = (index) => {
   ];
 };
 
+const handleAttractions = (id)=>{
+  router.push(`/placeDetails/${id}`);
+}
+
 // SEO
 const seoTitle = cityName ? `${cityName}, ${stateName} - Best Places to Visit` : 'Explore Incredible Places in India';
 const seoDescription = `Discover top tourist attractions, historical sites, and must-visit places in ${cityName}, ${stateName}. Plan your trip today!`;
@@ -158,14 +162,14 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
           cardType: 'summary_large_image',
         }}
       />
-    <Box sx={{ position: "relative", mt: 0, p: 0 }}>
+    <Box sx={{ position: "relative", mt: 0, p: 0,}}>
         
         <Image
-          width={1340}
+          width={1366}
           height={450}
           src={getLocationDetailsById.picture}
           alt={getLocationDetailsById.name}
-          style={{ objectFit: "fill", borderRadius: "10px"}} 
+          style={{ objectFit: "fill"}} 
           />
 
         
@@ -175,7 +179,8 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
             bottom: "1%",
             left: "1%",
             transform: "translateY(-50%)",
-            background: "rgba(0, 0, 0, 0.3)",
+            
+            background: "linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",
             padding: "5px 10px",
             borderRadius: "8px",
             display: "inline-block", 
@@ -308,7 +313,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
           sx={{ p: 3 }}
           variant="h4"
           fontWeight="bold"
-          color="primary"
+          color="#003366"
           gutterBottom
         >
           ATTRACTIONS
@@ -316,7 +321,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
 
         <Box
   sx={{
-  
+    
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -329,6 +334,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
     onClick={handlePrev}
     sx={{
       borderRadius: "50%",
+      backgroundColor:"#003366",
       width: "50px",
       height: "50px",
       minWidth: "50px",
@@ -336,7 +342,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#000",
+      color: "#fff",
       fontSize: "20px",
       border: "none",
       cursor: "pointer",
@@ -348,6 +354,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
 
   <Box
   sx={{
+    
     display: "flex",
     alignItems: "center",  
     justifyContent: "center",
@@ -357,7 +364,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
 >
   {placeListByCityId?.data && placeListByCityId.data.length > 0 ? (
     visibleSlides(currentIndex).filter((attr)=>attr.name!=="").map((image, index) => (
-      <Box
+      <Box onClick={()=>handleAttractions(image._id)}
         key={index}
         sx={{
           position: "relative",
@@ -412,6 +419,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
     onClick={handleNext}
     sx={{
       borderRadius: "50%",
+      backgroundColor:"#003366",
       width: "50px",
       height: "50px",
       minWidth: "50px",
@@ -419,7 +427,7 @@ const seoImage = placeListByCityId?.data?.[0]?.image || 'https://www.yourwebsite
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#000",
+      color: "#fff",
       fontSize: "20px",
       border: "none",
       cursor: "pointer",

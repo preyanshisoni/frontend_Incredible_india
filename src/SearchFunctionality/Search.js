@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
+import "./Search.css";
 
 const Search = ({ isScrolled }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,11 +41,11 @@ const Search = ({ isScrolled }) => {
 }
 }
   return (
-    <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
       
       <IoSearchCircleSharp
         size={32}
-        style={{ color: isScrolled ? "black" : "white", cursor: "pointer" }}
+        style={{marginTop:"-8px", color: isScrolled ? "black" : "white", cursor: "pointer" }}
         onClick={() => setShowLine(!showLine)}
       />
 
@@ -55,7 +56,8 @@ const Search = ({ isScrolled }) => {
           placeholder="Search..."
           value={searchTerm}
           onChange={handleSearch}
-          className="search-input"
+          className={`search-input ${isScrolled ? "scrolled" : ""}`}
+
           style={{
             position: "absolute",
             top: "-1px",
@@ -95,6 +97,7 @@ const Search = ({ isScrolled }) => {
         
         >
          
+  
       
           {searchResults.map((place, index) => (
             <li

@@ -124,16 +124,22 @@ export const Navbar = () => {
     console.log("id,cityName,stateName", id, cityName, stateName);
     sessionStorage.setItem("setStorageId", id);
     router.push(`/place-to-visit/${stateName}/${cityName}`);
+    setIsDropdownOpen(false);
   };
 
   const handleStateClick = (id, stateName) => {
     console.log("id,stateName", id, stateName);
     sessionStorage.setItem("setStorageId", id);
     router.push(`/place-to-visit/${stateName}`);
+    setIsDropdownOpen(false);
+    
+
   };
   const handleCategoryClick = (id, categoryName) => {
     sessionStorage.setItem("setCategoryId", id);
     router.push(`/must-visit/${categoryName}`);
+    setIsDropdownOpen(false);
+  
   };
 
 
@@ -252,26 +258,27 @@ export const Navbar = () => {
                         
                           sx={{
                             border: "1px solid #d0d0d0",
-                            // background: "linear-gradient(to bottom, #ffffff, #f8f9fa)",
+                            
                             position: "absolute",
                             top: "4vh",
                             left: "50%",
                             transform: "translateX(-50%)",
                             marginTop: "26px",
                             boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
-                            borderRadius: "12px",
+                            // borderRadius: "12px",
                             overflow: "hidden",
+                            height:"auto",
                             transition:
                               "transform 0.3s ease, box-shadow 0.3s ease",
                             width: {
                               xs: "90vw",
                               sm: "80vw",
                               md: "60vw",
-                              lg: "80vw",
+                              lg: "90vw",
                             },
 
                             "&:hover": {
-                              transform: "translateX(-50%) scale(1.02)",
+                            
                               boxShadow: "0 12px 24px rgba(0, 0, 0, 0.2)",
                             },
                           }}
@@ -342,7 +349,7 @@ export const Navbar = () => {
                                           "&:hover": { color: "#F0F0F0" },
                                         }}
                                       >
-                                        {item.name}
+                                        {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                                       </Typography>
 
                                       {dropdownData
@@ -374,7 +381,7 @@ export const Navbar = () => {
                                             <ArrowRightIcon
                                               sx={{ fontSize: "1rem", mr: 0.5 }}
                                             />
-                                            {city.name}
+                                            {city.name.charAt(0).toUpperCase() + city.name.slice(1)}
                                           </Box>
                                         ))}
                                     </Box>
@@ -408,6 +415,7 @@ export const Navbar = () => {
                                       backgroundColor: "#003366",
                                       color: "#ffff",
                                       textAlign: "center",
+                                      fontWeight:"bold",
                                       mb: 1,
                                       py: 0.5,
                                       borderRadius: "4px",
@@ -418,7 +426,7 @@ export const Navbar = () => {
                                       },
                                     }}
                                   >
-                                    {item.name}
+                                    {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                                   </Typography>
                                   <Typography
                                     sx={{

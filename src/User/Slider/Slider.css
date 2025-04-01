@@ -10,7 +10,7 @@
 }
 
 @keyframes fadeIn {
-  from {
+  from {   
     opacity: 0;
   }
   to {
@@ -20,7 +20,7 @@
 
 .slider-title {
   font-family: "Helvetica", sans-serif;
-  color: #2ec8c8;
+  color:#003366;
   font-weight: 700;
   margin-top: 20px;
   letter-spacing: 1px;
@@ -42,24 +42,24 @@
 }
 
 .slider-button {
-  border-radius: 50%;
-  background-color: #2ec8c8;
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  min-height: 50px;
+  /* border-radius: 50% !important; */
+  width: 30px;
+  
+  height: 50px; 
+   /* min-width:10px; */
+  /* min-height: 50px; */ 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 20px;
+  color:"#fff" !important;
+  
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .slider-button:hover {
-  background-color: #26b0b0;
+ 
   transform: scale(1.05);
 }
 

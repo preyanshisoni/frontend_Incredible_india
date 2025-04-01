@@ -21,6 +21,7 @@ import RouteIcon from "@mui/icons-material/Route"; // Alternative for Distance
 
 import Image from "next/image";
 import { NextSeo } from "next-seo";
+import DescriptionRenderer from "@/ckEditorConfiguration/DescriptionRenderer";
 
 const PlaceCarousel = () => {
 
@@ -90,6 +91,10 @@ const seoDescription = placeDetailsById?.description
 const seoUrl = `https://www.yourwebsite.com/place-to-visit/${placeDetailsById?.state_name}/${placeDetailsById?.city_name}/${placeDetailsById?.name}`;
 const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.yourwebsite.com/default-image.jpg';
 
+// const handleAttractionNearBy = (id)=>{
+//   console.log("id", id);
+//   router.push(`/placeDetails/${id}`);
+// }
 
   return<>
    
@@ -265,7 +270,8 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
 
 <Box sx={{display:"flex", gap:"60px", padding:"60px"}}>
     <Box sx={{ width:"50%", display:"flex", alignItems:"start", flexDirection:"column"}} >
-          <Typography>{placeDetailsById.description}</Typography>
+          {/* <Typography>{placeDetailsById.description}</Typography> */}
+          {/* <DescriptionRenderer description={placeDetailsById.description} /> */}
 
         <Image
                     width={600}
@@ -345,7 +351,8 @@ const seoImage = placeDetailsById?.image_id?.pictures?.[0]?.url || 'https://www.
       key={index}
       sx={{ display: "flex", justifyContent: "center" }}
     >
-      <Card
+      {/* <Card  onClick={()=>handleAttractionNearBy(attraction._id)} */}
+      <Card  
         sx={{
           boxShadow: 3,
           mb: 7,

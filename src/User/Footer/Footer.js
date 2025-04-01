@@ -12,8 +12,8 @@ import { fetchCategories } from "@/redux/slice/categorySlice";
 
 
 const linkVariants = {
-  hover: { scale: 1.1, color: "#0056b3", transition: { duration: 0.3 } }, // Gold on hover
-  tap: { scale: 0.9 }, // Click shrink effect
+  hover: { scale: 1.1, color: "black", transition: { duration: 0.3 } }, 
+  tap: { scale: 0.9 }, 
 };
 
 const fadeIn = {
@@ -151,7 +151,7 @@ const { places } = useSelector((state) => state.places);
           <span className="separator">|</span>
           <Link href="/contact" className="no-decoration">Contact Us</Link>
         </div>
-        {/* <p className="copyright">©2025</p> */}
+      
       </div>
     </motion.div>
   );

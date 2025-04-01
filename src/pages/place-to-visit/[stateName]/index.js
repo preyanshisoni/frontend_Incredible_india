@@ -140,11 +140,11 @@ const statePage = () => {
       
       <Box sx={{ position: "relative", mt: 0, p: 0 }}>
         <Image
-          width={1340}
+          width={1365}
           height={450}
           src={getLocationDetailsById.picture}
           alt={getLocationDetailsById.name}
-          style={{ objectFit: "fill", borderRadius: "10px" }}
+          style={{ objectFit: "fill"}}
         />
 
         <Box
@@ -153,7 +153,10 @@ const statePage = () => {
             bottom: "1%",
             left: "1%",
             transform: "translateY(-50%)",
-            background: "rgba(0, 0, 0, 0.3)",
+           
+            // background: "linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",
+
+            background:"linear-gradient(to right, rgba(0, 0,0,0.8),rgba(0,0,0,0))",
             padding: "5px 10px",
             borderRadius: "8px",
             display: "inline-block",

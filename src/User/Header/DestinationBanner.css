@@ -1,86 +1,19 @@
-/* .DestinationBanner{
-    
-    background: url("/assets/4848108\ 1.jpg") no-repeat center center;
-    background-size: cover;
-}
 
-.destination-top{
-    margin-top: 20px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    
-}
-.Des-heading{
-    font-family: Helvetica;
-   
-    
-    line-height: 91.99px;
-    color: #698DD9;
-
-}
-.discoverMore-btn{
-margin-top:30px;
-}
-
-.desOuterDiv{
-    justify-content: center;
-    padding: 0;
-    padding: 10px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap:40px
-  
-}
-.desDiv{
-
-    border-radius:5px;
-    width:310px;
-    height: 279px;
-}
-
-.desImg{
-    border-radius:5px;
-   
-} 
-
-
-.overlayText {
-    
-    position: absolute;
-    text-align: center;
-    bottom:10%;
-    left:30%;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-   */
-
-   /* Overall Banner */
 .DestinationBanner {
     background: url("/assets/4848108 1.jpg") no-repeat center center;
     background-size: cover;
     padding-bottom: 40px;
   }
-  
-  /* Top Section */
-  /* .destination-top {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  } */
+
   .destination-top {
-    margin-top: 20px;
+    margin-top:30px;
+    margin-bottom:10px;
     display: flex;
-    justify-content: space-between; /* Ensures space between text and button */
+    justify-content: space-between; 
     align-items: center;
     text-align: left;
-    padding: 0 20px; /* Add padding similar to .desOuterDiv */
-    max-width: 1200px; /* Optional: Set a max width */
+    /* padding: 0 20px;  */
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     
@@ -90,22 +23,11 @@ margin-top:30px;
   .Des-heading {
     font-family: Helvetica, Arial, sans-serif;
     line-height: 1.2;
-    color: #698dd9;
+    color: #003366;
     margin-bottom: 8px;
   }
   
-  /* .discoverMore-btn {
-    margin-top: 30px;
-    text-transform: none;
-    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .discoverMore-btn:hover {
-    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
-  } */
-  
-  /* Cards Layout */
+
   .desOuterDiv {
     display: flex;
     flex-wrap: wrap;
@@ -168,7 +90,7 @@ margin-top:30px;
 
 /* Animated Text */
 .overlayText {
-  color: #fff;
+  color:#fff;
   font-weight: bold;
   margin: 4px 0;
   opacity: 0;

@@ -58,18 +58,12 @@ const Place = () => {
   const [filterType, setFilterType] = useState("most_visited");
 
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [totalPage, setTotalPage] = useState(1);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const slideRef = useRef(null);
-
-
-
-
-
-  
 
   const topAttractions = [
     {
@@ -85,18 +79,16 @@ const Place = () => {
       img: "https://s7ap1.scene7.com/is/image/incredibleindia/hawa-mahal-jaipur-rajasthan-1-attr-nearby?qlt=82&ts=1726660181235",
     },
     {
-      title: "",
-      img: "https://s7ap1.scene7.com/is/image/incredibleindia/the-french-quarter-puducherry-1-attr-nearby?qlt=82&ts=1726656296402",
+      title: "Lotus Temple",
+      img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/56/e2/7e/engineering-marvel-at.jpg?w=600&h=400&s=1",
     },
   ];
 
-  
   const slides = [
     topAttractions[topAttractions.length - 1],
     ...topAttractions,
     topAttractions[0],
   ];
-
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -242,39 +234,35 @@ const Place = () => {
   )}&cities=${selectedCities.join(",")}&categories=${selectedCategories.join(
     ","
   )}`;
-  const seoImage = places?.[0]?.image_url || "https://www.yourwebsite.com/default-image.jpg";
+  const seoImage =
+    places?.[0]?.image_url || "https://www.yourwebsite.com/default-image.jpg";
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 2000);
 
- 
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => prev + 1);
-      }, 2000);
-  
-      return () => clearInterval(interval);
-    }, [currentIndex]); 
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
-    const handleTransitionEnd = () => {
-      
-      if (currentIndex === slides.length - 1) {
-        
-        setTransitionEnabled(false);
-        setCurrentIndex(1);
-      }
-      
-      if (currentIndex === 0) {
-        setTransitionEnabled(false);
-        setCurrentIndex(slides.length - 2);
-      }
-    };
+  const handleTransitionEnd = () => {
+    if (currentIndex === slides.length - 1) {
+      setTransitionEnabled(false);
+      setCurrentIndex(1);
+    }
 
-    useEffect(() => {
-      if (!transitionEnabled) {
-        
-        const timer = setTimeout(() => setTransitionEnabled(true),100);
-        return () => clearTimeout(timer);
-      }
-    }, [transitionEnabled]);
+    if (currentIndex === 0) {
+      setTransitionEnabled(false);
+      setCurrentIndex(slides.length - 2);
+    }
+  };
+
+  useEffect(() => {
+    if (!transitionEnabled) {
+      const timer = setTimeout(() => setTransitionEnabled(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [transitionEnabled]);
 
   return (
     <>
@@ -304,123 +292,124 @@ const Place = () => {
         }}
       />
 
-<Box
-  sx={{
-    height: "80vh",
-    width: "100%",
-    position: "relative",
-  }}
-  className="places-top"
->
-  {/* Background Image with Overlay */}
-  <Box sx={{ height: "80vh", position: "relative" }}>
-    <Image src="/assets/new_page_banner.jpg" fill />
-    <Box
-      sx={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(0, 0, 0, 0.5)",
-        zIndex: 1,
-      }}
-    />
-  </Box>
-
-  {/* Animated Text */}
-  <Box
-    className="animated-text"
-    sx={{
-      position: "absolute",
-      top: "50%",
-      left: "10%",
-      transform: "translateX(-50%) translateY(-50%)",
-      textAlign: "left",
-      color: "#fff",
-      padding: 2,
-      zIndex: 2,
-    }}
-  >
-    <Typography align="center" variant="h4" sx={{ color: "white" }}>
-      India's Top
-    </Typography>
-    <Typography
-      sx={{
-        fontFamily: "Inter, sans-serif",
-        fontWeight: "bold",
-        fontSize: "70px",
-      }}
-      align="center"
-      variant="h1"
-    >
-      ATTRACTIONS
-    </Typography>
-  </Box>
-
-  
-  <Box
-      className="carousel-container"
-      sx={{
-        position: "absolute",
-        top: "10%",
-        right: "5%",
-        width: "500px",
-        height: "350px",
-        overflow: "hidden",
-        borderRadius: "12px",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        zIndex: 3,
-      }}
-    >
       <Box
-        ref={slideRef}
-        className="carousel-slides"
         sx={{
-          display: "flex",
-          transition: transitionEnabled ? "transform 0.8s ease-in-out" : "none",
-          transform: `translateX(-${currentIndex * 100}%)`,
-          height: "100%",
+          height: "80vh",
           width: "100%",
+          position: "relative",
         }}
-        onTransitionEnd={handleTransitionEnd}
+        className="places-top"
       >
-        {slides.map((place, index) => (
+        {/* Background Image with Overlay */}
+        <Box sx={{ height: "80vh", position: "relative" }}>
+          <Image src="/assets/new_page_banner.jpg" fill />
           <Box
-            key={index}
-            className="carousel-slide"
-            sx={{ minWidth: "100%", position: "relative" }}
-          >
-            <img
-              src={place.img}
-              alt={place.title}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderBottom: "1px solid #ddd",
-              }}
-            />
-            <Typography
-              className="caption"
-              sx={{
-                position: "absolute",
-                bottom: "10px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontWeight: "bold",
-                fontSize: "25px",
-                color: "white",
-              }}
-            >
-              {place.title}
-            </Typography>
-          </Box>
-        ))}
-      </Box>
-    </Box>
-</Box>
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.5)",
+              zIndex: 1,
+            }}
+          />
+        </Box>
 
+        {/* Animated Text */}
+        <Box
+          className="animated-text"
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "10%",
+            transform: "translateX(-50%) translateY(-50%)",
+            textAlign: "left",
+            color: "#fff",
+            padding: 2,
+            zIndex: 2,
+          }}
+        >
+          <Typography align="center" variant="h4" sx={{ color: "white" }}>
+            India's Top
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: "bold",
+              fontSize: "70px",
+            }}
+            align="center"
+            variant="h1"
+          >
+            ATTRACTIONS
+          </Typography>
+        </Box>
+
+        <Box
+          className="carousel-container"
+          sx={{
+            position: "absolute",
+            top: "10%",
+            right: "5%",
+            width: "500px",
+            height: "350px",
+            overflow: "hidden",
+            borderRadius: "12px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            zIndex: 3,
+          }}
+        >
+          <Box
+            ref={slideRef}
+            className="carousel-slides"
+            sx={{
+              display: "flex",
+              transition: transitionEnabled
+                ? "transform 0.8s ease-in-out"
+                : "none",
+              transform: `translateX(-${currentIndex * 100}%)`,
+              height: "100%",
+              width: "100%",
+            }}
+            onTransitionEnd={handleTransitionEnd}
+          >
+            {slides.map((place, index) => (
+              <Box
+                key={index}
+                className="carousel-slide"
+                sx={{ minWidth: "100%", position: "relative" }}
+              >
+                <img
+                  src={place.img}
+                  alt={place.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderBottom: "1px solid #ddd",
+                  }}
+                />
+                <Typography
+                  className="caption"
+                  sx={{
+                    position: "absolute",
+                    bottom: "10px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    fontWeight: "bold",
+                    fontSize: "25px",
+                    backgroundColor:"#fff",
+                    color: "#003366",
+                  }}
+                >
+                  {place.title}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Box>
 
       <Box
         className="place-main_div"
@@ -632,43 +621,7 @@ const Place = () => {
               <Grid container spacing={4}>
                 {filteredPlaces.map((place) => (
                   <Grid item xs={12} sm={6} md={4} key={place._id}>
-                    {/* <Card 
-                      sx={{
-                        position: "relative",
-                        borderRadius: 1,
-                        boxShadow: 2,
-                        height: "300px",
-                      }}
-                      onClick={()=>handleNaviagate(place._id)}
-                    >
-                      <CardMedia
-                        component="img"
-                        height="100%"
-                        image={place.image_id.pictures[0]} 
-                        alt={place.name}
-                      />
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          background: "rgba(0, 0, 0, 0.5)",
-                          padding: 1,
-                        }}
-                      >
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            color: "#fff",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          {place.name}
-                        </Typography>
-                      </Box>
-                    </Card> */}
+
                     <Card
                       sx={{
                         position: "relative",
