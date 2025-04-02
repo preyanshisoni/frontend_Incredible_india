@@ -9,7 +9,7 @@ export const fetchCategories = createAsyncThunk(
       const response = await axios.get(`${BASE_URL}/Categories/`);
       return response.data;
     } catch (error) {
-      
+
     }
   }
 );

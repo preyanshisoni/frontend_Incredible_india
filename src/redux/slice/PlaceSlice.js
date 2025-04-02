@@ -51,7 +51,7 @@ import { create } from "lodash";
   export const getNearByPlaces = createAsyncThunk( "place/nearByPlaces",
     async (id, { rejectWithValue }) => {
       try {
-        const response = await axios.get(`${BASE_URL}/places/get/${id}`); 
+        const response = await axios.get(`${BASE_URL}/places/get/${id}`);
         return response.data;
       } catch (err) {
         console.error("Error fetching place details", err);
@@ -60,10 +60,10 @@ import { create } from "lodash";
     }
   )
 
-  export const placelistByCityId = createAsyncThunk("place/placelistByCityId", 
+  export const placelistByCityId = createAsyncThunk("place/placelistByCityId",
        async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/places/getbycityid/${id}`); 
+      const response = await axios.get(`${BASE_URL}/places/getbycityid/${id}`);
       if(response.data.data.length=== 0){
         return {data:[], message:"no place avaiable"}
 
@@ -75,10 +75,10 @@ import { create } from "lodash";
     }
   }
 )
-  export const fetchplaceByCategoryId = createAsyncThunk("place/placeByCategoryId ", 
+  export const fetchplaceByCategoryId = createAsyncThunk("place/placeByCategoryId ",
        async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/places/getbycategoryid/${id}`); 
+      const response = await axios.get(`${BASE_URL}/places/getbycategoryid/${id}`);
       if(response.data.data.length=== 0){
         return {data:[], message:"no place avaiable"}
 
@@ -94,12 +94,12 @@ import { create } from "lodash";
 export const SearchAll = createAsyncThunk(
   "place/searchAll",
   async ({ query }, { rejectWithValue }) => {
-    console.log("Search Query in Thunk:", query);  
+    console.log("Search Query in Thunk:", query);
 
     try {
       const response = await axios.get(`${BASE_URL}/search/search?query=${query}`);
       console.log("response data", response.data);
-      return response.data.data; 
+      return response.data.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || "Something went wrong");
     }
@@ -149,7 +149,7 @@ export const SearchAll = createAsyncThunk(
           state.error = action.payload;
         })
 
-        
+
         .addCase(searchPlace.pending, (state) => {
           state.loading = true;
         })
@@ -200,7 +200,7 @@ export const SearchAll = createAsyncThunk(
         })
         .addCase(fetchplaceByCategoryId.rejected, (state, action) => {
           state.loading = false;
-          
+
           state.err = action.payload || "Something went wrong";
 
           state.placeByCategoryId = {data:[]};
