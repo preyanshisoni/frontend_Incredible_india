@@ -21,16 +21,16 @@ dispatch(fetchCategories())
 },[dispatch])
 
   return<>
-    
+
     <CarouselContainer/>
     <DestinationBanner/>
     <Slider/>
     <TopSpiritualCarousel/>
-    
-    
-    
-   
-   
+
+
+
+
+
   </>
 }
 
